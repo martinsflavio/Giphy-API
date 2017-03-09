@@ -44,9 +44,9 @@ $(document).ready(function(){
 	// Topic Buttons
 	$$.btnBox.on("click", "button", function(){
 		var topicCall = $(this).text().trim();
-		
 		var query = "http://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit=10";
 		
+		//Clear Gifs Container
 		$$.selectedTopic.text(topicCall+" - ");
 		$$.gifBox.empty();
 
@@ -94,7 +94,7 @@ function validateEntry (arr, searchInput){
 function displayBtn (arr){
 
 	var btn = $("<button>");
-			btn.addClass("topic-btn btn btn-success btn-info");
+			btn.addClass("topic-btn btn btn-success btn-primary");
 			btn.attr("type","button");
 	
 	for (var i = 0; i<arr.length; i++){
@@ -104,12 +104,13 @@ function displayBtn (arr){
 	}
 }
 function displayGif (gifObj){
-	var gif = $("<div class='col-sm-3'>");
+	var gif = $("<div>");
+			gif.addClass("col-sm-3");
 			gif.append("<div class='thumbnail-gif thumbnail'>");
 			gif.find(".thumbnail-gif").append("<img class='gif'>");
 			gif.find(".thumbnail-gif").append("<h5 class='text-center'> Rating: "+gifObj.rating+"</h5>");
-			gif.find(".gif").attr("src", gifObj.images.fixed_height_still.url);
-			gif.find(".gif").attr("data-still", gifObj.images.fixed_height_still.url);
+			gif.find(".gif").attr("src", gifObj.images.fixed_width_still.url);
+			gif.find(".gif").attr("data-still", gifObj.images.fixed_width_still.url);
 			gif.find(".gif").attr("data-animate", gifObj.images.fixed_width.url);	
 			gif.find(".gif").attr("data-state", "still");
 	return gif;
