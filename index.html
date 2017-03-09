@@ -26,20 +26,32 @@
             <!-- End -->
           </div>
         </div>
+
         <div id="search-box" class="col-xs-4">
-          <!-- Search Box -->
           <form  id="form" class="navbar-form navbar-right" role="search">
             <input id="search-input" type="text" class="form-control input-sm" placeholder="Search">
             <button id="btn-submit" type="submit" class="btn btn-sm btn-success">Submit</button>
-          </form>
-          <!-- End -->        
+          </form>       
         </div>
       </div>
 
       <div class="row">
         <div class="panel panel-primary">
           <div class="panel-heading">
-            <h3 class="panel-title"><span id="selected-topic"></span> Gifs</h3>
+            <div class="row">
+              <div class="col-xs-10">
+                <h2 id="selected-topic" class="panel-title"></h2>  
+              </div>
+              <div class="col-xs-2">
+                <select id="total-display" class="form-control input-sm">
+                  <option>5</option>
+                  <option>10</option>
+                  <option>20</option>
+                  <option>50</option>
+                  <option>100</option>
+                </select>
+              </div>
+            </div>
           </div>
           <div id="gif-box" class="panel-body">
           </div>

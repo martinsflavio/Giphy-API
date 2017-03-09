@@ -4,6 +4,7 @@
 		/*Buttons*/
 		submitBtn: $("#btn-submit"),
 		clearBtn: $("#btn-clear"),
+		totalDisplay: $("#total-display"),
 		
 		/*HTML-Elements*/
 		btnBox: $("#btn-box"),
@@ -13,7 +14,6 @@
 	}
 
 $(document).ready(function(){
-
 
 
 	/*=============== Click Events ===============*/
@@ -36,18 +36,18 @@ $(document).ready(function(){
 		if(validateEntry(topics, newTopic)){
 			topics.push(newTopic);	
 			displayBtn(topics);	
-		}else{
-			console.log("button exist");
 		}
 	});
 
 	// Topic Buttons
 	$$.btnBox.on("click", "button", function(){
+		var totalDisplay = $( "#total-display option:selected" ).text();
 		var topicCall = $(this).text().trim();
-		var query = "http://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit=25";
+
+		var query = "http://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit="+totalDisplay;
 		
 		//Clear Gifs Container
-		$$.selectedTopic.text(topicCall+" - ");
+		$$.selectedTopic.text("Displaying "+totalDisplay+" "+topicCall+" gifs");
 		$$.gifBox.empty();
 
 		$.ajax({
@@ -74,13 +74,6 @@ $(document).ready(function(){
 				$("#"+rowNumb).append(displayGif(response.data[i]));
 				counter++;
 			}
-
-
-
-/*			for(var i = 0; i<response.data.length; i++){	
-				$$.gifBox.append(displayGif(response.data[i]));
-			}*/
-
 		});
 	});
 
@@ -94,8 +87,7 @@ $(document).ready(function(){
 		}else{
 			$(this).attr("src", $(this).data("still"));
 			$(this).attr("data-state", "still");
-		}
-		
+		}	
 	});
 });
 
