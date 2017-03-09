@@ -44,7 +44,7 @@ $(document).ready(function(){
 	// Topic Buttons
 	$$.btnBox.on("click", "button", function(){
 		var topicCall = $(this).text().trim();
-		var query = "http://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit=10";
+		var query = "http://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit=25";
 		
 		//Clear Gifs Container
 		$$.selectedTopic.text(topicCall+" - ");
@@ -54,10 +54,32 @@ $(document).ready(function(){
 			url: query,
 			method: "GET"
 		}).done(function(response){
-	
-			for(var i = 0; i<response.data.length; i++){	
-				$$.gifBox.append(displayGif(response.data[i]));
+			var imgPerLine = 4;
+			var rowNumb = 0;
+			var counter = 0;
+
+			// Display Gifs on Screen
+			for(var i = 0; i<response.data.length; i++){
+				// Counts row many gifs will be placed per row
+				if (counter === imgPerLine){
+					counter = 0;
+				}
+				// Create a new row every 4 gits
+				if(counter === 0){
+					$$.gifBox.append("<div class=row>");
+					$$.gifBox.attr("id", i);
+					rowNumb = i;
+				}
+				// Place the next 4 gifs in the row created above
+				$("#"+rowNumb).append(displayGif(response.data[i]));
+				counter++;
 			}
+
+
+
+/*			for(var i = 0; i<response.data.length; i++){	
+				$$.gifBox.append(displayGif(response.data[i]));
+			}*/
 
 		});
 	});
