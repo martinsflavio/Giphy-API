@@ -44,7 +44,7 @@ $(document).ready(function(){
 		var totalDisplay = $( "#total-display option:selected" ).text();
 		var topicCall = $(this).text().trim();
 
-		var query = "http://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit="+totalDisplay;
+		var query = "https://api.giphy.com/v1/gifs/search?q="+topicCall+"&api_key=dc6zaTOxFJmzC&limit="+totalDisplay;
 		
 		//Clear Gifs Container
 		$$.selectedTopic.text("Displaying "+totalDisplay+" "+topicCall+" gifs");
